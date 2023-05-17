@@ -14,6 +14,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await DioHelper.init();
   await CacheHelper.init();
+  // Colors.to convert tomorrow From Left :  #0c3b46 ,  #145362, #2c7688, #4b8896, #8eb8c2, #adc8c8
   runApp(const MyApp());
 }
 
