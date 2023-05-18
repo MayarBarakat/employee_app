@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:employee_app/layout/emplyee_layout.dart';
+import 'package:employee_app/layout/employee_layout.dart';
+import 'package:employee_app/module/attendance/attendance_cubit/attendance_cubit.dart';
 import 'package:employee_app/shared/network/local/cache_helper.dart';
 import 'package:employee_app/shared/network/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (BuildContext context) => EmployeeCubit(),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => AttendanceCubit(),
           ),
 
         ],

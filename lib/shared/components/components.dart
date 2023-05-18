@@ -3,6 +3,22 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 
+Widget defaultContainer (Widget child){
+  return Container(
+    decoration: const BoxDecoration(
+      color: Colors.white,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black26,
+          blurRadius: 10,
+          offset: Offset(2, 2),
+        ),
+      ],
+      borderRadius: BorderRadius.all(Radius.circular(20)),
+    ),
+    child: child,
+  );
+}
 Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType type,

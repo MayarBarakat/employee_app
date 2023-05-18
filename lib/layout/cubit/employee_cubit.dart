@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:employee_app/module/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../module/attendance/attendance_screen.dart';
 
 part 'employee_state.dart';
 
@@ -14,11 +15,12 @@ class EmployeeCubit extends Cubit<EmployeeState> {
   int currentIndex = 0;
 
   List<Widget> bottomScreen = [
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    AttendanceScreen(),
+    AttendanceScreen(),
+    AttendanceScreen(),
+    AttendanceScreen(),
+    AttendanceScreen(),
+
   ];
 
   void changeBottom(int index) {

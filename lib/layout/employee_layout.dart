@@ -1,7 +1,7 @@
 
 import 'package:employee_app/layout/cubit/employee_cubit.dart';
 import 'package:employee_app/layout/utils/rive_utils.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:employee_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rive/rive.dart';
@@ -18,28 +18,32 @@ class EmployeeLayout extends StatefulWidget {
 }
 
 class _EmployeeLayoutState extends State<EmployeeLayout> {
+double screenWidth = 0;
+  //0xFF579dff
 
   RiveAsset selectedBottomNav = bottomNavs.first;
   @override
   Widget build(BuildContext context) {
     var cubit = EmployeeCubit.get(context);
+    screenWidth = MediaQuery.of(context).size.width;
+
     return BlocConsumer<EmployeeCubit, EmployeeState>(
       listener: (context, state) {
       },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: Colors.grey[300],
+            backgroundColor: backgroundColor,
             body: IndexedStack(
               index: cubit.currentIndex,
               children: cubit.bottomScreen,
             ),
             bottomNavigationBar: SafeArea(
               child: Container(
-                padding: EdgeInsets.all(12),
-                margin: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    color: Color(0xff145362),
+                padding: const EdgeInsets.all(4),
+                margin: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                    color: defaultColor,
                     borderRadius: BorderRadius.all(Radius.circular(24))
                 ),
                 child: Row(
@@ -55,7 +59,7 @@ class _EmployeeLayoutState extends State<EmployeeLayout> {
                               });
                             }
                             cubit.changeBottom(index);
-                            Future.delayed( Duration(seconds: 1),(){
+                            Future.delayed( const Duration(seconds: 1),(){
                               bottomNavs[index].input!.change(false);
 
                             });
@@ -63,9 +67,7 @@ class _EmployeeLayoutState extends State<EmployeeLayout> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
-
                             children: [
-
                               SizedBox(
                                 height: 36,
                                 width: 36,
@@ -78,7 +80,7 @@ class _EmployeeLayoutState extends State<EmployeeLayout> {
                                     onInit: (artboard){
                                       StateMachineController controller = RiveUtils.getRiveController(
                                           artboard,
-                                          stateMachineName: bottomNavs[index].stateMachineName
+                                          stateMachineName: bottomNavs[index].stateMachineName,
                                       );
                                       bottomNavs[index].input = controller.findSMI("active") as SMIBool;
                                     },
@@ -87,10 +89,19 @@ class _EmployeeLayoutState extends State<EmployeeLayout> {
                               ),
                               AnimatedContainer(
                                 duration: const Duration(milliseconds: 200),
-                                height: 25,
-                                width: bottomNavs[index] == selectedBottomNav? 70 : 0,
+                                height: screenWidth /14,
+                                width: bottomNavs[index] == selectedBottomNav? 75 : 0,
 
-                                child: Text(bottomNavs[index].title,textAlign: TextAlign.center,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white),),
+                                child: Text(
+                                  bottomNavs[index].title,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    fontFamily: nexaBold
+                                  ),
+                                ),
                               ),
                             ],
                           ),
