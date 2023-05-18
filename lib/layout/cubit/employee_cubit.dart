@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:employee_app/module/leave_request/leave_request_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -16,7 +17,7 @@ class EmployeeCubit extends Cubit<EmployeeState> {
 
   List<Widget> bottomScreen = [
     AttendanceScreen(),
-    AttendanceScreen(),
+    LeaveRequestScreen(),
     AttendanceScreen(),
     AttendanceScreen(),
     AttendanceScreen(),
