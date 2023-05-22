@@ -66,6 +66,7 @@ class LeaveRequestScreen extends StatelessWidget {
                   navigateTo(context, HourlyLeaveRequestScreen());
                 }
             ),
+            SizedBox(height: 10,),
             buildLeaveRequestItem(
                 context: context,
                 title: "طلب إجازة يومية",
@@ -96,7 +97,7 @@ class LeaveRequestScreen extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              top: 35,
+              top: 25,
               left: 20,
               child: Material(
                 child: Container(
