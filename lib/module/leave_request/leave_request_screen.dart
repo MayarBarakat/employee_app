@@ -66,7 +66,6 @@ class LeaveRequestScreen extends StatelessWidget {
                   navigateTo(context, HourlyLeaveRequestScreen());
                 }
             ),
-            SizedBox(height: height * 0.01,),
             buildLeaveRequestItem(
                 context: context,
                 title: "طلب إجازة يومية",
@@ -93,7 +92,7 @@ class LeaveRequestScreen extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 220,
+        height: height / 3.2,
         child: Stack(
           children: [
             Positioned(
@@ -101,7 +100,7 @@ class LeaveRequestScreen extends StatelessWidget {
               left: 20,
               child: Material(
                 child: Container(
-                  height: 160,
+                  height: width /2,
                   width: width * 0.9,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -143,7 +142,7 @@ class LeaveRequestScreen extends StatelessWidget {
             Positioned(
               top: 60,
               left: 210,
-              child: Container(
+              child: SizedBox(
                 height: 150,
                 width: 160,
                 child: Column(
