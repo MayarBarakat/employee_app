@@ -86,22 +86,35 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           buildRemainingTime(stream: _stream,screenWidth: cubit.screenWidth),
           const SizedBox(height: 12,),
           // Scan barcode button
-          buildCheckInReader(context),
+          SizedBox(
+            width: cubit.screenWidth,
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                buildCheckInReader(context: context,title: "Scan to Check In"),
+                buildCheckInReader(context: context,title: "Scan to Check Out"),
+              ],
+            ),
+          ),
+
         ],
       ),
     );
   },
 );
   }
-  Widget buildCheckInReader(BuildContext context){
+  Widget buildCheckInReader({required BuildContext context,required String title}){
     var cubit  = AttendanceCubit.get(context);
-    return GestureDetector(
+    return InkWell(
       onTap: () async{
         await scanBarcode(context);
       },
       child: Container(
-        height: cubit.screenWidth / 2,
-        width: cubit.screenWidth / 2,
+        height: cubit.screenWidth / 2.2,
+        width: cubit.screenWidth / 2.2,
+        padding: EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -135,7 +148,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             Container(
               margin: const EdgeInsets.only(top: 12,),
               child: Text(
-                cubit.checkIn == "--/--" ? "Scan to Check In" : "Scan to Check Out",
+                 title,
                 style: TextStyle(
                   fontFamily: "NexaRegular",
                   fontSize: cubit.screenWidth / 20,
