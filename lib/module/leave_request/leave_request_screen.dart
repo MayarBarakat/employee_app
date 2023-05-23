@@ -14,71 +14,73 @@ class LeaveRequestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return  SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-          Container(
-            height: 150,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(50),
+    return  SafeArea(
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+            Container(
+              height: 150,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(50),
+                ),
+                color: defaultColor,
               ),
-              color: defaultColor,
-            ),
-            child: Stack(
-              children: [
-                Positioned(
-                  top: 40,
-                  left: 0,
-                  child: Container(
-                    height: 90,
-                    width: 300,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(50),
-                        bottomRight: Radius.circular(50)
-                      )
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 40,
+                    left: 0,
+                    child: Container(
+                      height: 90,
+                      width: 300,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(50),
+                          bottomRight: Radius.circular(50)
+                        )
+                      ),
                     ),
                   ),
-                ),
-                const Positioned(
-                  top: 70,
-                    left: 100,
-                    child: Text(
-                      "الإجازات",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: defaultColor),
-                    ))
-              ],
+                  const Positioned(
+                    top: 70,
+                      left: 100,
+                      child: Text(
+                        "الإجازات",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: defaultColor),
+                      ))
+                ],
+              ),
             ),
+              SizedBox(height: height * 0.05,),
+              buildLeaveRequestItem(
+                  context: context,
+                  title: "طلب إجازة ساعية",
+                  condition: "لا يمكن طلب أكثر من ساعتين",
+                  trail: "طلب إجازة ساعية",
+                  lottie: "clock",
+                  onTap: (){
+                    navigateTo(context, HourlyLeaveRequestScreen());
+                  }
+              ),
+              SizedBox(height: 10,),
+              buildLeaveRequestItem(
+                  context: context,
+                  title: "طلب إجازة يومية",
+                  condition: "لا يمكن طلب أكثر من يوم",
+                  trail: "طلب إجازة يوم",
+                  lottie: "day",
+                  onTap: (){
+                    navigateTo(context, DailyLeaveRequestScreen());
+                  }
+              ),
+            ],
           ),
-            SizedBox(height: height * 0.05,),
-            buildLeaveRequestItem(
-                context: context,
-                title: "طلب إجازة ساعية",
-                condition: "لا يمكن طلب أكثر من ساعتين",
-                trail: "طلب إجازة ساعية",
-                lottie: "clock",
-                onTap: (){
-                  navigateTo(context, HourlyLeaveRequestScreen());
-                }
-            ),
-            SizedBox(height: 10,),
-            buildLeaveRequestItem(
-                context: context,
-                title: "طلب إجازة يومية",
-                condition: "لا يمكن طلب أكثر من يوم",
-                trail: "طلب إجازة يوم",
-                lottie: "day",
-                onTap: (){
-                  navigateTo(context, DailyLeaveRequestScreen());
-                }
-            ),
-          ],
-        ),
+      ),
     );
 
   }

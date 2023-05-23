@@ -33,82 +33,78 @@ double screenWidth = 0;
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: backgroundColor,
+           extendBody: true,
             body: IndexedStack(
               index: cubit.currentIndex,
               children: cubit.bottomScreen,
             ),
-            bottomNavigationBar: SafeArea(
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                margin: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                    color: defaultColor,
-                    borderRadius: BorderRadius.all(Radius.circular(24))
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ...List.generate(bottomNavs.length,
-                            (index) =>GestureDetector(
-                          onTap: (){
-                            bottomNavs[index].input!.change(true);
-                            if(bottomNavs[index] != selectedBottomNav){
-                              setState(() {
-                                selectedBottomNav = bottomNavs[index];
-                              });
-                            }
-                            cubit.changeBottom(index);
-                            Future.delayed( const Duration(seconds: 1),(){
-                              bottomNavs[index].input!.change(false);
-
+            bottomNavigationBar: Container(
+              padding: EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                  color: defaultColor,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ...List.generate(bottomNavs.length,
+                          (index) =>GestureDetector(
+                        onTap: (){
+                          bottomNavs[index].input!.change(true);
+                          if(bottomNavs[index] != selectedBottomNav){
+                            setState(() {
+                              selectedBottomNav = bottomNavs[index];
                             });
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 36,
-                                width: 36,
-                                child: Opacity(
-                                  opacity: bottomNavs[index] == selectedBottomNav? 1: 0.5,
-                                  child: RiveAnimation.asset(
-                                    bottomNavs.first.src,
-                                    artboard: bottomNavs[index].artBoard,
-                                    animations: [],
-                                    onInit: (artboard){
-                                      StateMachineController controller = RiveUtils.getRiveController(
-                                          artboard,
-                                          stateMachineName: bottomNavs[index].stateMachineName,
-                                      );
-                                      bottomNavs[index].input = controller.findSMI("active") as SMIBool;
-                                    },
-                                  ),
-                                ),
-                              ),
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 200),
-                                height: screenWidth /14,
-                                width: bottomNavs[index] == selectedBottomNav? 75 : 0,
+                          }
+                          cubit.changeBottom(index);
+                          Future.delayed( const Duration(seconds: 1),(){
+                            bottomNavs[index].input!.change(false);
 
-                                child: Text(
-                                  bottomNavs[index].title,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    fontFamily: nexaBold
-                                  ),
+                          });
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 36,
+                              width: 36,
+                              child: Opacity(
+                                opacity: bottomNavs[index] == selectedBottomNav? 1: 0.5,
+                                child: RiveAnimation.asset(
+                                  bottomNavs.first.src,
+                                  artboard: bottomNavs[index].artBoard,
+                                  animations: [],
+                                  onInit: (artboard){
+                                    StateMachineController controller = RiveUtils.getRiveController(
+                                        artboard,
+                                        stateMachineName: bottomNavs[index].stateMachineName,
+                                    );
+                                    bottomNavs[index].input = controller.findSMI("active") as SMIBool;
+                                  },
                                 ),
                               ),
-                            ],
-                          ),
-                        )
-                    )
-                  ],
-                ),
+                            ),
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 200),
+                              height: screenWidth /14,
+                              width: bottomNavs[index] == selectedBottomNav? 75 : 0,
+
+                              child: Text(
+                                bottomNavs[index].title,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  fontFamily: nexaBold
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                  )
+                ],
               ),
             ),
           ),
