@@ -38,73 +38,70 @@ double screenWidth = 0;
               index: cubit.currentIndex,
               children: cubit.bottomScreen,
             ),
-            bottomNavigationBar: Container(
-              padding: EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                  color: defaultColor,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ...List.generate(bottomNavs.length,
-                          (index) =>GestureDetector(
-                        onTap: (){
-                          bottomNavs[index].input!.change(true);
-                          if(bottomNavs[index] != selectedBottomNav){
-                            setState(() {
-                              selectedBottomNav = bottomNavs[index];
+            bottomNavigationBar: SafeArea(
+              child: Container(
+                padding: EdgeInsets.all(12),
+                margin: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    color: defaultColor,
+                    borderRadius: BorderRadius.all(Radius.circular(24))
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ...List.generate(bottomNavs.length,
+                            (index) =>GestureDetector(
+                          onTap: (){
+                            bottomNavs[index].input!.change(true);
+                            if(bottomNavs[index] != selectedBottomNav){
+                              setState(() {
+                                selectedBottomNav = bottomNavs[index];
+                              });
+                            }
+                            cubit.changeBottom(index);
+                            Future.delayed( const Duration(seconds: 1),(){
+                              bottomNavs[index].input!.change(false);
+
                             });
-                          }
-                          cubit.changeBottom(index);
-                          Future.delayed( const Duration(seconds: 1),(){
-                            bottomNavs[index].input!.change(false);
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
 
-                          });
-                        },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 36,
-                              width: 72,
-                              child: Opacity(
-                                opacity: bottomNavs[index] == selectedBottomNav? 1: 0.5,
-                                child: RiveAnimation.asset(
-                                  bottomNavs.first.src,
-                                  artboard: bottomNavs[index].artBoard,
-                                  animations: [],
-                                  onInit: (artboard){
-                                    StateMachineController controller = RiveUtils.getRiveController(
-                                        artboard,
-                                        stateMachineName: bottomNavs[index].stateMachineName,
-                                    );
-                                    bottomNavs[index].input = controller.findSMI("active") as SMIBool;
-                                  },
+                            children: [
+                              AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  margin: const EdgeInsets.only(bottom: 2),
+                                  height: 4,
+                                  width: bottomNavs[index] == selectedBottomNav? 20 : 0,
+                                  decoration: const BoxDecoration(
+                                      color: Color(0xFF81B4FF),
+                                      borderRadius: BorderRadius.all(Radius.circular(12))
+                                  )),
+                              SizedBox(
+                                height: 40,
+                                width: 36,
+                                child: Opacity(
+                                  opacity: bottomNavs[index] == selectedBottomNav? 1: 0.5,
+                                  child: RiveAnimation.asset(
+                                    bottomNavs.first.src,
+                                    artboard: bottomNavs[index].artBoard,
+                                    onInit: (artboard){
+                                      StateMachineController controller = RiveUtils.getRiveController(
+                                          artboard,
+                                          stateMachineName: bottomNavs[index].stateMachineName
+                                      );
+                                      bottomNavs[index].input = controller.findSMI("active") as SMIBool;
+                                    },
+                                  ),
                                 ),
                               ),
-                            ),
-                            AnimatedContainer(
-                              duration: const Duration(milliseconds: 200),
-                              height: screenWidth /14,
-                              width: bottomNavs[index] == selectedBottomNav? 75 : 0,
 
-                              child: Text(
-                                bottomNavs[index].title,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  fontFamily: nexaBold
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                  )
-                ],
+                            ],
+                          ),
+                        )
+                    )
+                  ],
+                ),
               ),
             ),
           ),
