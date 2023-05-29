@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:employee_app/module/leave_request/leave_request_screen.dart';
+import 'package:employee_app/module/notifications/notification_container.dart';
 import 'package:employee_app/module/search/search_screen.dart';
+import 'package:employee_app/module/settinga/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -20,8 +22,8 @@ class EmployeeCubit extends Cubit<EmployeeState> {
     AttendanceScreen(),
     LeaveRequestScreen(),
     SearchbarAnimationExample(),
-    LeaveRequestScreen(),
-    AttendanceScreen(),
+    NotificationContainer(),
+    SettingsScreen(),
 
   ];
 
