@@ -10,6 +10,13 @@ class DoctorsScreen extends StatelessWidget {
       isAvailable: true,
     ),
     Doctor(
+      name: 'Dr. John Doe',
+      specialty: 'Cardiology',
+      floor: 'First Floor',
+      imageUrl: 'https://example.com/doctor_image_1.jpg',
+      isAvailable: true,
+    ),
+    Doctor(
       name: 'Dr. Jane Smith',
       specialty: 'Pediatrics',
       imageUrl: 'https://example.com/doctor_image_2.jpg',
@@ -47,6 +54,7 @@ class DoctorsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: doctors.length,
         itemBuilder: (context, index) {
           return DoctorListItem(doctor: doctors[index]);

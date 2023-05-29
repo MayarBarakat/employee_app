@@ -55,6 +55,7 @@ class EmployeesScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: doctors.length,
         itemBuilder: (context, index) {
           return DoctorListItem(doctor: doctors[index]);

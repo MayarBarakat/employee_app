@@ -67,7 +67,7 @@ double screenWidth = 0;
                           children: [
                             SizedBox(
                               height: 36,
-                              width: 36,
+                              width: 72,
                               child: Opacity(
                                 opacity: bottomNavs[index] == selectedBottomNav? 1: 0.5,
                                 child: RiveAnimation.asset(
