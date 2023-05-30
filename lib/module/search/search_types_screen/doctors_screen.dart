@@ -1,4 +1,9 @@
+import 'package:employee_app/module/doctor_details/doctor_details.dart';
+import 'package:employee_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import '../../doctor_details/size_confige.dart';
 
 class DoctorsScreen extends StatelessWidget {
   final List<Doctor> doctors = [
@@ -48,22 +53,920 @@ class DoctorsScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    SizeConfig.initSize(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("الأطباء"),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: doctors.length,
-        itemBuilder: (context, index) {
-          return DoctorListItem(doctor: doctors[index]);
-        },
+      body: Container(
+        margin: EdgeInsets.all(16),
+        child: GridView(
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            crossAxisCount: 2,
+            childAspectRatio: .6,
+          ),
+          children: [
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(0, 2), // changes the position of the shadow
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                      ),
+                                      color: defaultColor,
+                                    ),
+                                    height: getRelativeHeight(0.14),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Container(
+                                            width: getRelativeHeight(0.13),
+                                            height: getRelativeHeight(0.13),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.red
+                                                      .withOpacity(0.6)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.25)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.17)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  width: 190,
+                                  height: getRelativeHeight(0.19),
+                                  child: Image.asset('assets/images/doctor_1.png')),
+                            ],
+                          ),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25))),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getRelativeHeight(0.02),
+                                  horizontal: getRelativeWidth((0.05))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'doctor.name',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: getRelativeWidth(0.041)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  Text(
+                                    'doctor.speciality',
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: getRelativeWidth(0.032)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  true
+                                      ? Chip(
+                                    label: Text(
+                                      'Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.green,
+                                  )
+                                      : Chip(
+                                    label: Text(
+                                      'Not Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(0, 2), // changes the position of the shadow
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                      ),
+                                      color: defaultColor,
+                                    ),
+                                    height: getRelativeHeight(0.14),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Container(
+                                            width: getRelativeHeight(0.13),
+                                            height: getRelativeHeight(0.13),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.red
+                                                      .withOpacity(0.6)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.25)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.17)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  width: 190,
+                                  height: getRelativeHeight(0.19),
+                                  child: Image.asset('assets/images/doctor_2.png')),
+                            ],
+                          ),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25))),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getRelativeHeight(0.02),
+                                  horizontal: getRelativeWidth((0.05))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'doctor.name',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: getRelativeWidth(0.041)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  Text(
+                                    'doctor.speciality',
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: getRelativeWidth(0.032)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  true
+                                      ? Chip(
+                                    label: Text(
+                                      'Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.green,
+                                  )
+                                      : Chip(
+                                    label: Text(
+                                      'Not Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(0, 2), // changes the position of the shadow
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                      ),
+                                      color: defaultColor,
+                                    ),
+                                    height: getRelativeHeight(0.14),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Container(
+                                            width: getRelativeHeight(0.13),
+                                            height: getRelativeHeight(0.13),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.red
+                                                      .withOpacity(0.6)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.25)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.17)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  width: 190,
+                                  height: getRelativeHeight(0.19),
+                                  child: Image.asset('assets/images/doctor_1.png')),
+                            ],
+                          ),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25))),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getRelativeHeight(0.02),
+                                  horizontal: getRelativeWidth((0.05))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'doctor.name',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: getRelativeWidth(0.041)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  Text(
+                                    'doctor.speciality',
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: getRelativeWidth(0.032)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  true
+                                      ? Chip(
+                                    label: Text(
+                                      'Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.green,
+                                  )
+                                      : Chip(
+                                    label: Text(
+                                      'Not Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(0, 2), // changes the position of the shadow
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                      ),
+                                      color: defaultColor,
+                                    ),
+                                    height: getRelativeHeight(0.14),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Container(
+                                            width: getRelativeHeight(0.13),
+                                            height: getRelativeHeight(0.13),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.red
+                                                      .withOpacity(0.6)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.25)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.17)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  width: 190,
+                                  height: getRelativeHeight(0.19),
+                                  child: Image.asset('assets/images/doctor_2.png')),
+                            ],
+                          ),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25))),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getRelativeHeight(0.02),
+                                  horizontal: getRelativeWidth((0.05))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'doctor.name',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: getRelativeWidth(0.041)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  Text(
+                                    'doctor.speciality',
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: getRelativeWidth(0.032)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  true
+                                      ? Chip(
+                                    label: Text(
+                                      'Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.green,
+                                  )
+                                      : Chip(
+                                    label: Text(
+                                      'Not Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(0, 2), // changes the position of the shadow
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                      ),
+                                      color: defaultColor,
+                                    ),
+                                    height: getRelativeHeight(0.14),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Container(
+                                            width: getRelativeHeight(0.13),
+                                            height: getRelativeHeight(0.13),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.red
+                                                      .withOpacity(0.6)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.25)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.17)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  width: 190,
+                                  height: getRelativeHeight(0.19),
+                                  child: Image.asset('assets/images/doctor_1.png')),
+                            ],
+                          ),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25))),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getRelativeHeight(0.02),
+                                  horizontal: getRelativeWidth((0.05))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'doctor.name',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: getRelativeWidth(0.041)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  Text(
+                                    'doctor.speciality',
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: getRelativeWidth(0.032)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  true
+                                      ? Chip(
+                                    label: Text(
+                                      'Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.green,
+                                  )
+                                      : Chip(
+                                    label: Text(
+                                      'Not Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(0, 2), // changes the position of the shadow
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        topRight: Radius.circular(25),
+                                      ),
+                                      color: defaultColor,
+                                    ),
+                                    height: getRelativeHeight(0.14),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Container(
+                                            width: getRelativeHeight(0.13),
+                                            height: getRelativeHeight(0.13),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.red
+                                                      .withOpacity(0.6)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.25)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            width: getRelativeHeight(0.11),
+                                            height: getRelativeHeight(0.11),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 15,
+                                                  color: Colors.grey
+                                                      .withOpacity(0.17)),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  width: 190,
+                                  height: getRelativeHeight(0.19),
+                                  child: Image.asset('assets/images/doctor_1.png')),
+                            ],
+                          ),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25))),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getRelativeHeight(0.02),
+                                  horizontal: getRelativeWidth((0.05))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'doctor.name',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: getRelativeWidth(0.041)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  Text(
+                                    'doctor.speciality',
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: getRelativeWidth(0.032)),
+                                  ),
+                                  SizedBox(height: getRelativeHeight(0.005)),
+                                  true
+                                      ? Chip(
+                                    label: Text(
+                                      'Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.green,
+                                  )
+                                      : Chip(
+                                    label: Text(
+                                      'Not Available',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+          ],
+        ),
       ),
     );
   }
 }
-
 
 class Doctor {
   final String name;
@@ -80,6 +983,7 @@ class Doctor {
     required this.isAvailable,
   });
 }
+
 class DoctorListItem extends StatelessWidget {
   final Doctor doctor;
 
@@ -91,17 +995,13 @@ class DoctorListItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         elevation: 8.0,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: SizedBox(
           height: 100,
           child: Center(
             child: ListTile(
-
               leading: Image.asset(
-
-               'assets/images/doctors.webp',
+                'assets/images/doctors.webp',
                 height: 60,
                 width: 60,
                 fit: BoxFit.cover,
@@ -115,25 +1015,23 @@ class DoctorListItem extends StatelessWidget {
                   Text(doctor.floor),
                 ],
               ),
-
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)
-              ),
+                  borderRadius: BorderRadius.circular(12)),
               trailing: doctor.isAvailable
                   ? Chip(
-                label: Text(
-                  'Available',
-                  style: TextStyle(color: Colors.white),
-                ),
-                backgroundColor: Colors.green,
-              )
+                      label: Text(
+                        'Available',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: Colors.green,
+                    )
                   : Chip(
-                label: Text(
-                  'Not Available',
-                  style: TextStyle(color: Colors.white),
-                ),
-                backgroundColor: Colors.red,
-              ),
+                      label: Text(
+                        'Not Available',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
               onTap: () {
                 // Add any desired functionality when a doctor item is tapped
               },

@@ -19,6 +19,7 @@ class _HourlyLeaveRequestScreenState extends State<HourlyLeaveRequestScreen> {
   @override
   void dispose() {
     reasonController.dispose();
+    FocusScope.of(context).unfocus();
     super.dispose();
   }
 

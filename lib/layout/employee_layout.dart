@@ -40,9 +40,9 @@ double screenWidth = 0;
             ),
             bottomNavigationBar: SafeArea(
               child: Container(
-                padding: EdgeInsets.all(12),
-                margin: EdgeInsets.all(16),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(12),
+                margin: const EdgeInsets.all(16),
+                decoration: const BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.all(Radius.circular(24))
                 ),
@@ -56,6 +56,7 @@ double screenWidth = 0;
                             if(bottomNavs[index] != selectedBottomNav){
                               setState(() {
                                 selectedBottomNav = bottomNavs[index];
+                                FocusScope.of(context).unfocus();
                               });
                             }
                             cubit.changeBottom(index);

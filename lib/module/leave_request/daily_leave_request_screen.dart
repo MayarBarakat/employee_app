@@ -17,6 +17,7 @@ class _DailyLeaveRequestScreenState extends State<DailyLeaveRequestScreen> {
   @override
   void dispose() {
     reasonController.dispose();
+    FocusScope.of(context).unfocus();
     super.dispose();
   }
 
