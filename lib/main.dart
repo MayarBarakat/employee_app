@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc_observer.dart';
 import 'layout/cubit/employee_cubit.dart';
-import 'module/doctor_details/size_confige.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

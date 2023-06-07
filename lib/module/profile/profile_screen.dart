@@ -17,10 +17,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
+
             children: [
               Container(
                 width: double.infinity,
-                height: 150,
+                height: MediaQuery.of(context).size.height /3.5,
                 decoration: BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.only(
@@ -98,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       }
       ){
     return Container(
-      padding: EdgeInsets.only(right: 5,left: 5,top: 10,),
+      padding: EdgeInsets.only(right: 8,left: 5,top: 10,),
       width: MediaQuery.of(context).size.width / 2,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,

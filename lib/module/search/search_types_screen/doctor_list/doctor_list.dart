@@ -1,10 +1,9 @@
-import 'package:employee_app/module/doctor_details/size_confige.dart';
+import 'package:employee_app/module/search/search_types_screen/doctor_list/utils/size_confige.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
-import 'data.dart';
+import 'utils/constants.dart';
+import 'utils/data.dart';
 
 
 class DoctorsList extends StatelessWidget {

@@ -1,14 +1,12 @@
-import 'package:employee_app/module/search/search_types_screen/doctors_screen.dart';
-import 'package:employee_app/module/search/search_types_screen/emergency_screen.dart';
-import 'package:employee_app/module/search/search_types_screen/employees_screen.dart';
-import 'package:employee_app/module/search/search_types_screen/kitchen_screen.dart';
-import 'package:employee_app/module/search/search_types_screen/nurses_screen.dart';
+import 'package:employee_app/module/search/search_types_screen/doctor_list/doctors_screen.dart';
+import 'package:employee_app/module/search/search_types_screen/emergency_list/emergency_screen.dart';
+import 'package:employee_app/module/search/search_types_screen/employees_list/employees_screen.dart';
+import 'package:employee_app/module/search/search_types_screen/kitchen_list/kitchen_screen.dart';
+import 'package:employee_app/module/search/search_types_screen/nurses_list/nurses_screen.dart';
 import 'package:employee_app/shared/components/components.dart';
 import 'package:employee_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:searchbar_animation/searchbar_animation.dart';
 
-import '../doctor_details/doctor_details.dart';
 
 class SearchbarAnimationExample extends StatefulWidget {
 
